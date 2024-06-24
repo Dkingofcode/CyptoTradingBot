@@ -28,10 +28,11 @@ symbol = 'uBTCUSD'
 pos_size = 1
 target = 9 # percentage gain i want
 max_loss = -8
+leverage = 6
 
 params = {'timeInForce': 'PostOnly', }
 
-params = {'type': 'swap', 'code': 'USD'}
+params = {'type': 'swap', 'code': 'USD', 'leverage': 5}
 
 # fetch all the market to get all the symbols
 markets = phenex.fetch_markets(params=params)
@@ -65,6 +66,26 @@ random_symbol_num = random.randrange(0, 78)
 random_symbol = all_symbols.iloc[random_symbol_num]['symbol']
 print(random_symbol)
 
+
+# now we have every contract ticker on phenex, now
+# we want to look for apps and then buy or sell
+    # mean  reversion
+    # breakouts
+    # trending
+    # sma cross
+
+#  MEAN REVERSION
+def bot(symbol=random_symbol):   
+    phenex.set_leverage(leverage, symbol)
+    phenex.create_market_buy_order(symbol, pos_size, params)
+    
+
+
+
+
+bot()    
+
+# pass in leverage params     
 
 
 
