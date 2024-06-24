@@ -31,12 +31,33 @@ max_loss = -8
 
 params = {'timeInForce': 'PostOnly', }
 
+params = {'type': 'swap', 'code': 'USD'}
+
 # fetch all the market to get all the symbols
-print(phenex.fetch_markets())
+markets = phenex.fetch_markets(params=params)
+temp_df = pd.DataFrame()
 
+for n in markets:
+    type = n['info']['type']
+    if type == 'Perpetual':
+        print(type)
+        symbol = n['id']
+        print(n['id'])
+        symbols_df['symbol'] = [symbol]
 
+        # make a df to store
+    
 
+        print('--')    
 
+    symbols_df = symbols_df.append(temp_df)
+
+print(symbols_df)    
+
+# outfile = open('jsontickers.json', 'w')
+# json.dump()
+
+# outfile.close()
 
 
 
